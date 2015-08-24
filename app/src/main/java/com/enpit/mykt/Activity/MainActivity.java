@@ -1,19 +1,25 @@
 package com.enpit.mykt.Activity;
 
-import android.support.v7.app.ActionBarActivity;
+import android.app.Activity;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.enpit.mykt.Fragment.ScheduleToolsFragment;
+import com.enpit.mykt.Fragment.TimeFragment;
 import com.enpit.mykt.R;
 
 
-public class MainActivity extends ActionBarActivity {
-
+public class MainActivity extends Activity  implements ScheduleToolsFragment.OnFragmentInteractionListener,TimeFragment.OnFragmentInteractionListener {
+    ScheduleToolsFragment scheduleToolsFragment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
         setContentView(R.layout.activity_main);
+        scheduleToolsFragment=(ScheduleToolsFragment)getFragmentManager().findFragmentById(R.id.fragment1);
     }
 
 
@@ -37,5 +43,15 @@ public class MainActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
+    }
+
+    @Override
+    public void onFragmentInteraction(String id) {
+
     }
 }

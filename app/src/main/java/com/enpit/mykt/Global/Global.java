@@ -8,7 +8,9 @@ public class Global {
     private TimeSet SelectedTime;
     private  Global()
     {
-        SelectedTime=new TimeSet(-1,true);
+        SelectedTime
+//                =new TimeSet(-1,true);
+        = new TimeSet(5, false);
     }
     public static Global getGlobal()
     {

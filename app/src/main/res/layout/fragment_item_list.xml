@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+    <TextView
+        android:id="@+id/listTime"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:height="30dp"
+        android:textSize="25sp" />
+    <TextView
+        android:id="@+id/listSchedule"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/listTime"
+        android:height="120dp"
+        android:ellipsize="marquee"
+        android:singleLine="true"
+        android:textSize="27.5sp" />
+</RelativeLayout>

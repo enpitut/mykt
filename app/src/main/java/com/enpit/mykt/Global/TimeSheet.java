@@ -1,5 +1,7 @@
 package com.enpit.mykt.Global;
 
+import com.enpit.mykt.Model.TimeSet;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -66,9 +68,9 @@ public class TimeSheet {
 
     public static List<TimeSet> getScheduleList(TimeSet time) {
         List<TimeSet> scheduleList = new ArrayList<TimeSet>();
-        int index = time.getH() * 2;
+        int index = time.GetH() * 2;
         int weight = 13;
-        if (time.getM() == 30) {
+        if (time.GetM() == 30) {
             index++;
         }
         if (index + weight / 2 > listTimeSet.size()) {

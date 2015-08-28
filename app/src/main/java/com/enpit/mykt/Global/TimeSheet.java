@@ -51,29 +51,26 @@ public class TimeSheet {
         add(new TimeSet(19, true));
         add(new TimeSet(19, false));
         add(new TimeSet(20, true));
-        add(new TimeSet(20, true));
+        add(new TimeSet(20, false));
         add(new TimeSet(21, true));
         add(new TimeSet(21, false));
         add(new TimeSet(22, true));
         add(new TimeSet(22, false));
         add(new TimeSet(23, true));
         add(new TimeSet(23, false));
-        add(new TimeSet(24, true));
-        add(new TimeSet(24, false));
     }};
 
-    public static List<TimeSet> getTimeSheet(TimeSet time) {
+    public static List<TimeSet> getTimeSheet() {
         return listTimeSet;
     }
-
     public static List<TimeSet> getScheduleList(TimeSet time) {
         List<TimeSet> scheduleList = new ArrayList<TimeSet>();
-        int index = time.GetH() * 2;
+        int index = time.getH() * 2;
         int weight = 13;
-        if (time.GetM() == 30) {
+        if (time.getM() == 30) {
             index++;
         }
-        if (index + weight / 2 > listTimeSet.size()) {
+        if (index + weight / 2 >= listTimeSet.size()) {
             for (int i = listTimeSet.size() - weight - 1; i < listTimeSet.size(); i++) {
                 scheduleList.add(listTimeSet.get(i));
             }

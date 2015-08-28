@@ -13,6 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.TextView;
 import com.enpit.mykt.Global.Global;
+import com.enpit.mykt.JsonManager.ScheduleManager;
 import com.enpit.mykt.Model.TimeSet;
 import com.enpit.mykt.Global.TimeSheet;
 import com.enpit.mykt.R;
@@ -211,8 +212,12 @@ public class TimeFragment extends Fragment implements AbsListView.OnItemClickLis
 
             time.setText(timeListStr[position]);
             /*
-                スケジュールのアイコン設置、お願い致します。
+                スケジュールのアイコン設置、お願い致します。scheduleListの中にすでに選択された日のスケジュール
              */
+            ScheduleManager scheduleManager=new ScheduleManager();
+            List<TimeSet> scheduleList= scheduleManager.GetSchedule(Global.getGlobal().getSelectDate());
+
+
             schedule.setText(scheduleListStr[position]);
 
 

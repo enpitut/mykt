@@ -1,14 +1,24 @@
 package com.enpit.mykt.Fragment;
 
 import android.app.Activity;
+import android.graphics.Canvas;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.support.v7.widget.GridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.support.v7.app.ActionBarActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 
+
+import com.enpit.mykt.Global.RecyclerAdapter;
 import com.enpit.mykt.R;
+
+import java.util.Random;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -59,15 +69,50 @@ public class ScheduleToolsFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+
     }
 
+    private RecyclerView mRecyclerView;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_schedule_tools, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_schedule_tools, container, false);
+        mRecyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerView);
+        return rootView;
     }
 
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceStaten){
+
+        GridLayoutManager layoutManager = new GridLayoutManager(getActivity(),2);
+        //LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
+       // layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+
+        mRecyclerView.setLayoutManager(layoutManager);
+
+        datasets[] dataset = new datasets[10];
+        for(int i = 0; i < dataset.length; i++){
+            dataset[i] = new datasets("test" + i, Color.rgb((int) (255*Math.random()), (int) (255*Math.random()),(int) (255*Math.random())));
+        }
+
+        RecyclerAdapter mAdapter = new RecyclerAdapter(dataset, getActivity());
+        mRecyclerView.setAdapter(mAdapter);
+        super.onViewCreated(view, savedInstanceStaten);
+
+    }
+
+    public static class datasets{
+        public String item_name;
+        public int color;
+
+        public datasets(String item_name, int color){
+            this.item_name = item_name;
+            this.color = color;
+        }
+
+    }
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {

@@ -2,6 +2,7 @@ package com.enpit.mykt.Fragment;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.view.LayoutInflater;
@@ -12,10 +13,11 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.TextView;
+
+import com.enpit.mykt.Activity.MainActivity;
 import com.enpit.mykt.Global.Global;
-import com.enpit.mykt.JsonManager.ScheduleManager;
-import com.enpit.mykt.Model.TimeSet;
 import com.enpit.mykt.Global.TimeSheet;
+import com.enpit.mykt.Model.TimeSet;
 import com.enpit.mykt.R;
 
 import java.util.List;
@@ -29,7 +31,7 @@ import java.util.List;
  * Activities containing this fragment MUST implement the {@link OnFragmentInteractionListener}
  * interface.
  */
-public class TimeFragment extends Fragment implements AbsListView.OnItemClickListener {
+public class DayTimeFragment extends Fragment implements AbsListView.OnItemClickListener {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -54,8 +56,8 @@ public class TimeFragment extends Fragment implements AbsListView.OnItemClickLis
 //    private ListAdapter mAdapter;
 
     // TODO: Rename and change types of parameters
-    public static TimeFragment newInstance(String param1, String param2) {
-        TimeFragment fragment = new TimeFragment();
+    public static DayTimeFragment newInstance(String param1, String param2) {
+        DayTimeFragment fragment = new DayTimeFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -67,7 +69,7 @@ public class TimeFragment extends Fragment implements AbsListView.OnItemClickLis
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
      */
-    public TimeFragment() {
+    public DayTimeFragment() {
     }
     MyListAdapter myAdapter = null;
     @Override
@@ -82,13 +84,13 @@ public class TimeFragment extends Fragment implements AbsListView.OnItemClickLis
         // TODO: Change Adapter to display your content
 //        mAdapter = new ArrayAdapter<DummyContent.DummyItem>(getActivity(),
 //                android.R.layout.simple_list_item_1, android.R.id.text1, DummyContent.ITEMS);
-        myAdapter = new MyListAdapter(getActivity(), R.layout.fragment_item_list);
+        myAdapter = new MyListAdapter(getActivity(), R.layout.fragment_day_time_list);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_item, container, false);
+        View view = inflater.inflate(R.layout.fragment_day_time, container, false);
 
         // Set the adapter
         mListView = (AbsListView) view.findViewById(android.R.id.list);
@@ -119,11 +121,13 @@ public class TimeFragment extends Fragment implements AbsListView.OnItemClickLis
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//        if (null != mListener) {
-//            // Notify the active callbacks interface (the activity, if the
-//            // fragment is attached to one) that an item has been selected.
-//            mListener.onFragmentInteraction(DummyContent.ITEMS.get(position).id);
-//        }
+        if (null != mListener) {
+            Global.getGlobal().setSelectedTime(position);
+
+            // Notify the active callbacks interface (the activity, if the
+            // fragment is attached to one) that an item has been selected.
+            startActivity(new Intent(getActivity(), MainActivity.class));
+        }
     }
 
     /**
@@ -149,33 +153,31 @@ public class TimeFragment extends Fragment implements AbsListView.OnItemClickLis
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
      */
-
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         public void onFragmentInteraction(String id);
     }
     public class MyListAdapter extends ArrayAdapter<Object> {
 
-        TimeSet touchTime = Global.getGlobal().getSelectedTime();
-
         int mTextViewResourceID = 0;
         private Context mContext;
-        List<TimeSet> scheduleList = TimeSheet.getScheduleList(touchTime);
-        int size = scheduleList.size();
+        List<TimeSet> scheduleList = TimeSheet.getTimeSheet();
+        int size = scheduleList.size()/2;
 
         String[] timeListStr = new String[size];
-        String[] scheduleListStr = new String[size];
 
         public MyListAdapter(Context context, int textViewResourceId) {
             super(context, textViewResourceId);
             mTextViewResourceID = textViewResourceId;
             mContext = context;
             for (int i = 0; i < size; i++) {
-                timeListStr[i] = scheduleList.get(i).getH() + ":" + scheduleList.get(i).getM();
-                scheduleListStr[i]="スケジュール";
+                timeListStr[i] = scheduleList.get(i*2).getH() + ":" + scheduleList.get(i*2).getM();
+
             }
         }
-        private int[] colors = new int[]{0xFFFFFF, 0x12626569};
+
+
+        private int[] colors = new int[]{0x00000000, 0x00000000};
 
         public int getCount() {
             return timeListStr.length;
@@ -197,30 +199,18 @@ public class TimeFragment extends Fragment implements AbsListView.OnItemClickLis
         public View getView(final int position, View convertView, ViewGroup parent) {
 
 
-            TextView time = null;
-            TextView schedule = null;
+            TextView time;
 
 
 //            if (convertView == null) {
             convertView = LayoutInflater.from(mContext).inflate(
                     mTextViewResourceID, null);
-            time = (TextView)convertView. findViewById(R.id.listTime);
-            schedule = (TextView)convertView. findViewById(R.id.listSchedule);
+            time = (TextView)convertView. findViewById(R.id.listDayTime);
 //            }
             int colorPos = position % colors.length;
             convertView.setBackgroundColor(colors[colorPos]);
 
             time.setText(timeListStr[position]);
-            /*
-                スケジュールのアイコン設置、お願い致します。scheduleListの中にすでに選択された日のスケジュール
-             */
-            ScheduleManager scheduleManager=new ScheduleManager();
-            List<TimeSet> scheduleList= scheduleManager.GetSchedule(Global.getGlobal().getSelectDate());
-
-
-            schedule.setText(scheduleListStr[position]);
-
-
             return convertView;
         }
     }

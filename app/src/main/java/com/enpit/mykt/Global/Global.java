@@ -1,5 +1,6 @@
 package com.enpit.mykt.Global;
 
+import com.enpit.mykt.Model.Date;
 import com.enpit.mykt.Model.TimeSet;
 
 /**
@@ -7,12 +8,14 @@ import com.enpit.mykt.Model.TimeSet;
  */
 public class Global {
     private static Global global;
-    private static TimeSet SelectedTime;
+    private static TimeSet selectedTime;
+    private static Date selectDate;
     private  Global()
     {
-        SelectedTime
+        selectedTime
 //                =new TimeSet(-1,true);
         = new TimeSet(5, false);
+        selectDate =new Date(2015,8,27);
     }
     public static Global getGlobal()
     {
@@ -27,12 +30,19 @@ public class Global {
     }
     public TimeSet getSelectedTime()
     {
-        return SelectedTime;
+        return selectedTime;
     }
     public void setSelectedTime(int h)
     {
-        SelectedTime.setH(h);
-        SelectedTime.setM(0);
+        selectedTime.setH(h);
+        selectedTime.setM(0);
     }
+    public void setSelectDate(int year,int month,int day)
+    {
+        selectDate.setYear(year);
+        selectDate.setMonth(month);
+        selectDate.setDay(day);
+    }
+
 
 }

@@ -13,7 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.TextView;
 import com.enpit.mykt.Global.Global;
-import com.enpit.mykt.Global.TimeSet;
+import com.enpit.mykt.Model.TimeSet;
 import com.enpit.mykt.Global.TimeSheet;
 import com.enpit.mykt.R;
 import com.enpit.mykt.Fragment.dummy.DummyContent;
@@ -119,11 +119,11 @@ public class TimeFragment extends Fragment implements AbsListView.OnItemClickLis
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        if (null != mListener) {
-            // Notify the active callbacks interface (the activity, if the
-            // fragment is attached to one) that an item has been selected.
-            mListener.onFragmentInteraction(DummyContent.ITEMS.get(position).id);
-        }
+//        if (null != mListener) {
+//            // Notify the active callbacks interface (the activity, if the
+//            // fragment is attached to one) that an item has been selected.
+//            mListener.onFragmentInteraction(DummyContent.ITEMS.get(position).id);
+//        }
     }
 
     /**
@@ -171,7 +171,7 @@ public class TimeFragment extends Fragment implements AbsListView.OnItemClickLis
             mTextViewResourceID = textViewResourceId;
             mContext = context;
             for (int i = 0; i < size; i++) {
-                timeListStr[i] = scheduleList.get(i).getH() + ":" + scheduleList.get(i).getM();
+                timeListStr[i] = scheduleList.get(i).GetH() + ":" + scheduleList.get(i).GetM();
                 scheduleListStr[i]="スケジュール";
             }
         }

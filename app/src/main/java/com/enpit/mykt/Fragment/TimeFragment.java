@@ -16,7 +16,6 @@ import com.enpit.mykt.Global.Global;
 import com.enpit.mykt.Model.TimeSet;
 import com.enpit.mykt.Global.TimeSheet;
 import com.enpit.mykt.R;
-import com.enpit.mykt.Fragment.dummy.DummyContent;
 
 import java.util.List;
 
@@ -171,12 +170,10 @@ public class TimeFragment extends Fragment implements AbsListView.OnItemClickLis
             mTextViewResourceID = textViewResourceId;
             mContext = context;
             for (int i = 0; i < size; i++) {
-                timeListStr[i] = scheduleList.get(i).GetH() + ":" + scheduleList.get(i).GetM();
+                timeListStr[i] = scheduleList.get(i).getH() + ":" + scheduleList.get(i).getM();
                 scheduleListStr[i]="スケジュール";
             }
         }
-
-
         private int[] colors = new int[]{0xFFFFFF, 0x12626569};
 
         public int getCount() {
@@ -213,7 +210,12 @@ public class TimeFragment extends Fragment implements AbsListView.OnItemClickLis
             convertView.setBackgroundColor(colors[colorPos]);
 
             time.setText(timeListStr[position]);
+            /*
+                スケジュールのアイコン設置、お願い致します。
+             */
             schedule.setText(scheduleListStr[position]);
+
+
             return convertView;
         }
     }

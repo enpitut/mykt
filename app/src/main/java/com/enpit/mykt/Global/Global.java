@@ -7,7 +7,7 @@ import com.enpit.mykt.Model.TimeSet;
  */
 public class Global {
     private static Global global;
-    private TimeSet SelectedTime;
+    private static TimeSet SelectedTime;
     private  Global()
     {
         SelectedTime
@@ -21,12 +21,18 @@ public class Global {
             return  global;
         }
         else{
-            return new Global();
+            global=new Global();
+            return global;
         }
     }
     public TimeSet getSelectedTime()
     {
         return SelectedTime;
+    }
+    public void setSelectedTime(int h)
+    {
+        SelectedTime.setH(h);
+        SelectedTime.setM(0);
     }
 
 }

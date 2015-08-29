@@ -13,18 +13,28 @@ public class Date {
         this.month=month;
         this.day=day;
     }
-    public int GetYear()
+    public int getYear()
     {
     return year;
     }
-    public int GetMonth()
+    public int getMonth()
     {
         return  month;
     }
-    public  int GetDay()
+    public  int getDay()
     {
-        return day
-                ;
+        return day;
     }
-
+    public void setYear(int year)
+    {
+        this.year=year;
+    }
+    public void setMonth(int month)
+    {
+        this.month=month;
+    }
+    public void setDay(int day)
+    {
+        this.day=day;
+    }
 }

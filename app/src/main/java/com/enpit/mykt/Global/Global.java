@@ -43,6 +43,11 @@ public class Global {
         selectDate.setMonth(month);
         selectDate.setDay(day);
     }
+    public Date getSelectDate()
+    {
+        return selectDate;
+    }
+
 
 
 }

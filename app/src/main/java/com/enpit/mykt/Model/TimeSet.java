@@ -16,18 +16,26 @@ public class TimeSet {
         this.m = m;
         this.schedule=schedule;
     }
-    public int GetH() {
+    public int getH() {
         return h;
     }
+    public void setH(int h)
+    {
+        this.h=h;
+    }
+    public void setM(int m)
+    {
+        this.m=m;
+    }
 
-    public int GetM() {
+    public int getM() {
         return m;
     }
-    public void SetSchedule(Schedule schedule)
+    public void setSchedule(Schedule schedule)
     {
         this.schedule=schedule;
     }
-    public Schedule GetSchedule()
+    public Schedule getSchedule()
     {
         return this.schedule;
     }

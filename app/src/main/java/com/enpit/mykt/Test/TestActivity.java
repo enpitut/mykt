@@ -26,7 +26,7 @@ public class TestActivity extends ActionBarActivity {
             スケジュール　セーブ
          */
         TimeSet schedule=new TimeSet(5,false);
-        schedule.SetSchedule(new Schedule("Meeting", Color.RED));
+        schedule.setSchedule(new Schedule("Meeting", Color.RED));
         Date DateToday=new Date(2015,8,27);
         SM.AddSchedule(schedule,DateToday);
         /*

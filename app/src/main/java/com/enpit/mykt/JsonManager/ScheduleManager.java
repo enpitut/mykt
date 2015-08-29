@@ -17,13 +17,13 @@ public class ScheduleManager
 {
     public void AddSchedule(TimeSet schedule,Date time)
     {
-        String fileName=Integer.toString(time.GetYear())+Integer.toString(time.GetMonth())+Integer.toString(time.GetDay());
+        String fileName=Integer.toString(time.getYear())+Integer.toString(time.getMonth())+Integer.toString(time.getDay());
         JSONObject newSchedule=new JSONObject();
         try {
-            newSchedule.put("Time_H",schedule.GetH());
-            newSchedule.put("Time_M",schedule.GetM());
-            newSchedule.put("ScheduleName",schedule.GetSchedule().GetScheduleName());
-            newSchedule.put("ScheduleColor",schedule.GetSchedule().GetScheduleColor());
+            newSchedule.put("Time_H",schedule.getH());
+            newSchedule.put("Time_M",schedule.getM());
+            newSchedule.put("ScheduleName",schedule.getSchedule().GetScheduleName());
+            newSchedule.put("ScheduleColor",schedule.getSchedule().GetScheduleColor());
             DataManager.Insert(newSchedule,fileName);
         } catch (Exception e) {
             e.printStackTrace();
@@ -31,7 +31,7 @@ public class ScheduleManager
     }
     public List<TimeSet> GetSchedule(Date time) {
         List<TimeSet> schedules = new ArrayList<TimeSet>();
-        String fileName = Integer.toString(time.GetYear()) + Integer.toString(time.GetMonth()) + Integer.toString(time.GetDay());
+        String fileName = Integer.toString(time.getYear()) + Integer.toString(time.getMonth()) + Integer.toString(time.getDay());
         try {
             String JSON = DataManager.Select(fileName);
             JSONObject mainNode = new JSONObject(JSON);

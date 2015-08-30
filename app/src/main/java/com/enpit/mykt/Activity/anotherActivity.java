@@ -1,26 +1,24 @@
 package com.enpit.mykt.Activity;
 
-import android.app.Activity;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.enpit.mykt.Fragment.DayTimeFragment;
 import com.enpit.mykt.R;
 
-public class DayTimeActivity extends Activity implements DayTimeFragment.OnFragmentInteractionListener {
+public class anotherActivity extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_day_time);
+        setContentView(R.layout.activity_another);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_day_time, menu);
+        getMenuInflater().inflate(R.menu.menu_another, menu);
         return true;
     }
 
@@ -37,10 +35,5 @@ public class DayTimeActivity extends Activity implements DayTimeFragment.OnFragm
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public void onFragmentInteraction(String id) {
-
     }
 }

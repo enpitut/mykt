@@ -21,12 +21,18 @@ public class DataManager{
         String res="";
         try{
             File file = new File(Environment.getExternalStorageDirectory(), fileName);
-            FileInputStream fin = new FileInputStream(file);
-            int length = fin.available();
-            byte [] buffer = new byte[length];
-            fin.read(buffer);
-            res = EncodingUtils.getString(buffer, "UTF-8");
-            fin.close();
+            if(file.exists()) {
+                FileInputStream fin = new FileInputStream(file);
+                int length = fin.available();
+                byte[] buffer = new byte[length];
+                fin.read(buffer);
+                res = EncodingUtils.getString(buffer, "UTF-8");
+                fin.close();
+            }
+            else
+            {
+                return "";
+            }
         }
         catch(Exception e){
             e.printStackTrace();

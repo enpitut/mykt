@@ -1,26 +1,35 @@
 package com.enpit.mykt.Activity;
 
 import android.app.Activity;
-import android.support.v7.app.ActionBarActivity;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.enpit.mykt.Fragment.DayTimeFragment;
+import com.enpit.mykt.Fragment.ScheduleToolsFragment;
+import com.enpit.mykt.Fragment.TimeFragment;
+import com.enpit.mykt.Global.Global;
 import com.enpit.mykt.R;
 
-public class DayTimeActivity extends Activity implements DayTimeFragment.OnFragmentInteractionListener {
 
+public class ScheduleActivity extends Activity  implements ScheduleToolsFragment.OnFragmentInteractionListener,TimeFragment.OnFragmentInteractionListener {
+    ScheduleToolsFragment scheduleToolsFragment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_day_time);
+
+
+        setContentView(R.layout.activity_schedule);
+        scheduleToolsFragment=(ScheduleToolsFragment)getFragmentManager().findFragmentById(R.id.fragment1);
+
+        System.out.println(Global.getGlobal().getSelectDate().getYear()+"/"+Global.getGlobal().getSelectDate().getMonth()+"/"+Global.getGlobal().getSelectDate().getDay()+"/"+Global.getGlobal().getSelectedTime().getH()+":"+Global.getGlobal().getSelectedTime().getM());
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_day_time, menu);
+        getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
@@ -37,6 +46,11 @@ public class DayTimeActivity extends Activity implements DayTimeFragment.OnFragm
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
     }
 
     @Override

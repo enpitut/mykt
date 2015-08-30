@@ -12,6 +12,7 @@ import android.widget.SlidingDrawer.OnDrawerOpenListener;
 import android.widget.SlidingDrawer.OnDrawerScrollListener;
 import android.widget.TextView;
 
+import com.enpit.mykt.Global.Global;
 import com.enpit.mykt.doim.CalendarViewBuilder;
 import com.enpit.mykt.doim.CustomDate;
 import com.enpit.mykt.widget.CalendarView;
@@ -33,11 +34,9 @@ public class MainActivity extends Activity implements OnClickListener,CallBack{
 	private TextView monthCalendarView;
 	private TextView weekCalendarView;
 	private CalendarViewBuilder builder = new CalendarViewBuilder();
-	private SlidingDrawer mSlidingDrawer;
 	private View mContentPager;
 	private CustomDate mClickDate;
-	private CircleTextView mNowCircleView;
-	private CircleTextView mAddCircleView;
+
 	public static final String MAIN_ACTIVITY_CLICK_DATE = "main_click_date";
 	
 
@@ -58,15 +57,10 @@ public class MainActivity extends Activity implements OnClickListener,CallBack{
 		monthCalendarView = (TextView) this.findViewById(R.id.month_calendar_button);
 		weekCalendarView = (TextView) this.findViewById(R.id.week_calendar_button);
 		mContentPager = this.findViewById(R.id.contentPager);
-		mSlidingDrawer = (SlidingDrawer)this.findViewById(R.id.sildingDrawer);
-		mNowCircleView = (CircleTextView)this.findViewById(R.id.now_circle_view);
-		mAddCircleView = (CircleTextView)this.findViewById(R.id.add_circle_view);
 		monthCalendarView.setOnClickListener(this);
 		weekCalendarView.setOnClickListener(this);
-		mNowCircleView.setOnClickListener(this);
-		mAddCircleView.setOnClickListener(this);
 		setViewPager();
-		setOnDrawListener();
+//		setOnDrawListener();
 	}
 
 
@@ -77,26 +71,26 @@ public class MainActivity extends Activity implements OnClickListener,CallBack{
 		viewPager.setOnPageChangeListener(new CalendarViewPagerLisenter(viewPagerAdapter));
 	}
 
-	private void setOnDrawListener() {
-		mSlidingDrawer.setOnDrawerOpenListener(new OnDrawerOpenListener() {
-			
-			@Override
-			public void onDrawerOpened() {
-				builder.swtichCalendarViewsStyle(CalendarView.WEEK_STYLE);
-			}
-		});
-		mSlidingDrawer.setOnDrawerScrollListener(new OnDrawerScrollListener() {
-			
-			@Override
-			public void onScrollStarted() {
-				builder.swtichCalendarViewsStyle(CalendarView.MONTH_STYLE);
-			}
-			
-			@Override
-			public void onScrollEnded() {
-			}
-		});
-	}
+//	private void setOnDrawListener() {
+//		mSlidingDrawer.setOnDrawerOpenListener(new OnDrawerOpenListener() {
+//
+//			@Override
+//			public void onDrawerOpened() {
+//				builder.swtichCalendarViewsStyle(CalendarView.WEEK_STYLE);
+//			}
+//		});
+//		mSlidingDrawer.setOnDrawerScrollListener(new OnDrawerScrollListener() {
+//
+//			@Override
+//			public void onScrollStarted() {
+//				builder.swtichCalendarViewsStyle(CalendarView.MONTH_STYLE);
+//			}
+//
+//			@Override
+//			public void onScrollEnded() {
+//			}
+//		});
+//	}
 
  @Override
  protected void onDestroy() {  
@@ -115,22 +109,11 @@ public class MainActivity extends Activity implements OnClickListener,CallBack{
 		case R.id.month_calendar_button:
 			swtichBackgroundForButton(true);
 			builder.swtichCalendarViewsStyle(CalendarView.MONTH_STYLE);
- 			mSlidingDrawer.close();
+// 			mSlidingDrawer.close();
 			break;
 		case R.id.week_calendar_button:
 			swtichBackgroundForButton(false);
-			mSlidingDrawer.open();
-			break;
-		case R.id.now_circle_view:
-			builder.backTodayCalendarViews();
-			break;
-		case R.id.add_circle_view:
-			Intent i = new Intent(this,anotherActivity.class);
-//			Bundle mBundle = new Bundle();
-//	       mBundle.putSerializable(MAIN_ACTIVITY_CLICK_DATE,mClickDate);
-//	       i.putExtras(mBundle);
-			startActivity(i);
-		//	overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+//			mSlidingDrawer.open();
 			break;
  		}
  	}
@@ -148,13 +131,20 @@ public class MainActivity extends Activity implements OnClickListener,CallBack{
 
 	@Override
 	public void onMesureCellHeight(int cellSpace) {
-		mSlidingDrawer.getLayoutParams().height = mContentPager.getHeight() - cellSpace;
+//		mSlidingDrawer.getLayoutParams().height = mContentPager.getHeight() - cellSpace;
 	}
 
 	@Override
 	public void clickDate(CustomDate date) {
 		mClickDate = date;
-		//Toast.makeText(this, date.year+"-"+date.month+"-"+date.day, Toast.LENGTH_SHORT).show();
+
+			Global.getGlobal().setSelectDate(date.year, date.month, date.day);
+//			Toast.makeText(this, date.year+"-"+date.month+"-"+date.day, Toast.LENGTH_SHORT).show();
+			Intent i = new Intent(this, DayTimeActivity.class);
+			startActivity(i);
+
+
+
 	}
 
 	@Override

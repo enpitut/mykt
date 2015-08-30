@@ -170,82 +170,8 @@
         android:paddingRight="10dip"
         android:background="#F7F7F7" >
     </android.support.v4.view.ViewPager>
-    <SlidingDrawer 
-        android:id="@+id/sildingDrawer"
-        android:layout_width="fill_parent"
-        android:layout_height="200dip"
-        android:orientation="vertical"
-        android:layout_alignBottom="@+id/viewpager"
-        android:handle="@+id/handlerText"
-        android:content="@+id/contentText"
-        
-        >
-       <LinearLayout 
-            android:id="@+id/handlerText"
-            android:layout_height="wrap_content"
-            android:minHeight="140dip"
-             android:background="#fffffe"
-            android:layout_width="fill_parent"
-            android:orientation="vertical">
-           <View
-            android:layout_width="fill_parent"
-            android:layout_height="1px"
-            android:background="#30000000" >
-        </View>  
-        <TextView   
-            android:layout_width="fill_parent"
-            android:layout_height="50dip"
-            android:paddingLeft="5dip"
-            android:text="no schedule"
-            android:textSize="16sp"
-            android:textColor="#90000000"
-            android:gravity="center_vertical"
-            />
-         <View
-            android:layout_width="fill_parent"
-            android:layout_height="1px"
-            android:background="#20000000" >
-        </View>
-         </LinearLayout>
-         <View  
-             android:id="@+id/contentText"
-             android:background="#fffffe"
-             android:layout_width="fill_parent" 
-             android:layout_height="wrap_content">
-         </View>   
-        
-    </SlidingDrawer>
+
 </RelativeLayout>
-    <RelativeLayout
-        android:layout_width="fill_parent"
-        android:layout_height="60dip"
-        android:background="@drawable/bottom_bar_bg" >
 
-        <View
-            android:layout_width="fill_parent"
-            android:layout_height="1px"
-            android:layout_alignParentTop="true"
-            android:background="#20000000" >
-        </View>
-
-        <com.enpit.mykt.widget.CircleTextView
-            android:id="@+id/now_circle_view"
-            android:layout_width="50dip"
-            android:layout_height="50dip"
-            android:layout_centerInParent="true"
-            android:layout_marginLeft="10dip"
-            android:layout_marginRight="10dip"
-            textcircle:text="today" />
-
-
-
-        <com.enpit.mykt.widget.CircleTextView
-            android:id="@+id/add_circle_view"
-            android:layout_width="50dip"
-            android:layout_height="50dip"
-            android:layout_centerInParent="true"
-            android:layout_toRightOf="@id/now_circle_view"
-            textcircle:text="add" />
-    </RelativeLayout>
 
 </LinearLayout>

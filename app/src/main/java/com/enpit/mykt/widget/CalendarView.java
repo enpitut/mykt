@@ -244,7 +244,7 @@ public class CalendarView extends View {
 			if (DateUtil.isToday(date)) {
 				mClickCell = new Cell(date, State.TODAY, i, 0);
 				date.week = i;
-				mCallBack.clickDate(date);
+//				mCallBack.clickDate(date);
 				rows[0].cells[i] =  new Cell(date, State.CLICK_DAY, i, 0);
 				continue;
 			}
@@ -274,7 +274,7 @@ public class CalendarView extends View {
 						CustomDate date = CustomDate.modifiDayForObject(mShowDate, day);
 						mClickCell = new Cell(date, State.TODAY, i,j);
 						date.week = i;
-						mCallBack.clickDate(date);
+//						mCallBack.clickDate(date);
 						rows[j].cells[i] = new Cell(date, State.CLICK_DAY, i,j);
 						continue;
 					}

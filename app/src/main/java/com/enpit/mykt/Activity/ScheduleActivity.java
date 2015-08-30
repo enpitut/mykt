@@ -8,18 +8,21 @@ import android.view.MenuItem;
 
 import com.enpit.mykt.Fragment.ScheduleToolsFragment;
 import com.enpit.mykt.Fragment.TimeFragment;
+import com.enpit.mykt.Global.Global;
 import com.enpit.mykt.R;
 
 
-public class daytimeMainActivity extends Activity  implements ScheduleToolsFragment.OnFragmentInteractionListener,TimeFragment.OnFragmentInteractionListener {
+public class ScheduleActivity extends Activity  implements ScheduleToolsFragment.OnFragmentInteractionListener,TimeFragment.OnFragmentInteractionListener {
     ScheduleToolsFragment scheduleToolsFragment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
 
-        setContentView(R.layout.daytime_activity_main);
+        setContentView(R.layout.activity_schedule);
         scheduleToolsFragment=(ScheduleToolsFragment)getFragmentManager().findFragmentById(R.id.fragment1);
+
+        System.out.println(Global.getGlobal().getSelectDate().getYear()+"/"+Global.getGlobal().getSelectDate().getMonth()+"/"+Global.getGlobal().getSelectDate().getDay()+"/"+Global.getGlobal().getSelectedTime().getH()+":"+Global.getGlobal().getSelectedTime().getM());
     }
 
 

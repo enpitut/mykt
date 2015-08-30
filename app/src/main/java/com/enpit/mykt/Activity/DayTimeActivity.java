@@ -1,5 +1,6 @@
 package com.enpit.mykt.Activity;
 
+import android.app.Activity;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -8,7 +9,7 @@ import android.view.MenuItem;
 import com.enpit.mykt.Fragment.DayTimeFragment;
 import com.enpit.mykt.R;
 
-public class DayTimeActivity extends ActionBarActivity implements DayTimeFragment.OnFragmentInteractionListener {
+public class DayTimeActivity extends Activity implements DayTimeFragment.OnFragmentInteractionListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -66,7 +66,7 @@ public class TimeSheet {
     public static List<TimeSet> getScheduleList(TimeSet time) {
         List<TimeSet> scheduleList = new ArrayList<TimeSet>();
         int index = time.getH() * 2;
-        int weight = 13;
+        int weight = 5;
         if (time.getM() == 30) {
             index++;
         }

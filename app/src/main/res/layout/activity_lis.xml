@@ -1,0 +1,46 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:baselineAligned="false"
+    android:weightSum="1"
+    android:orientation="horizontal">
+
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.5"
+        >
+        <ListView
+            android:id="@+id/scheduleView"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:choiceMode="singleChoice"
+            />
+    <!--<TextView-->
+        <!--android:id="@+id/timeList"-->
+        <!--android:layout_width="fill_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:height="30dp"-->
+        <!--android:textSize="25sp" />-->
+    <!--<TextView-->
+        <!--android:id="@+id/scheduleList"-->
+        <!--android:layout_width="fill_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_below="@+id/timeList"-->
+        <!--android:height="120dp"-->
+        <!--android:ellipsize="marquee"-->
+        <!--android:singleLine="true"-->
+        <!--android:textSize="27.5sp" />-->
+        </RelativeLayout>
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.5"
+        android:orientation="horizontal">
+        <android.support.v7.widget.RecyclerView
+            android:id = "@+id/scheduleToolsView"
+            android:scrollbars = "vertical"
+            android:layout_width = "match_parent"
+            android:layout_height = "match_parent"/>
+    </LinearLayout>
+</LinearLayout>

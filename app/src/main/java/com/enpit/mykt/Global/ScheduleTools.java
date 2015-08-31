@@ -15,11 +15,13 @@ public class ScheduleTools {
         add(new Schedule("Report",Color.RED));
         add(new Schedule("Seminar",Color.BLUE));
         add(new Schedule("Meeting",Color.GRAY));
-        add(new Schedule("Running",Color.BLACK));
+        add(new Schedule("Running",Color.MAGENTA));
         add(new Schedule("Sleep",Color.GREEN));
         add(new Schedule("Food",Color.DKGRAY));
         add(new Schedule("Pool",Color.YELLOW));
         add(new Schedule("Homework",Color.LTGRAY));
+        add(new Schedule("Free",Color.WHITE));
+
 
     }};
     private ScheduleTools()

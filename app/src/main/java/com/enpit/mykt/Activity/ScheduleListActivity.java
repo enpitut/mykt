@@ -21,8 +21,11 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.NumberPicker;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -46,6 +49,9 @@ public class ScheduleListActivity extends Activity  {
     ListView listView;
     int screenWidth;
     int screenHeight;
+    EditText text1;
+    RecyclerAdapter mAdapter;
+    dataset[] mDataset = new dataset[ScheduleTools.GetSchedules().size()];
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setContentView(R.layout.activity_lis);
@@ -68,7 +74,6 @@ public class ScheduleListActivity extends Activity  {
         mRecyclerView.setLayoutManager(layoutManager);
 
 
-        dataset[] mDataset = new dataset[ScheduleTools.GetSchedules().size()];
 
         for(int i = 0; i < ScheduleTools.GetSchedules().size(); i++){
 
@@ -76,12 +81,27 @@ public class ScheduleListActivity extends Activity  {
                     , ScheduleTools.GetSchedules().get(i).GetScheduleColor());
         }
 
-        RecyclerAdapter mAdapter = new RecyclerAdapter(mDataset, this);
+        mAdapter = new RecyclerAdapter(mDataset, this);
         mRecyclerView.setAdapter(mAdapter);
 
         mRecyclerView.setOnDragListener(new NoMyDragListener());
 
         super.onCreate(savedInstanceState);
+    }
+
+    @Override
+    public void onStart(){
+        super.onStart();
+        Button button = (Button)findViewById(R.id.add_button);;
+        text1 =(EditText)findViewById(R.id.add_text);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String atext = text1.getText().toString();
+                mDataset[8] = new dataset( atext, Color.rgb((int) (255 * Math.random()), (int) (255 * Math.random()), (int) (255 * Math.random())));
+                mRecyclerView.setAdapter(mAdapter);
+            }
+        });
     }
 
     @Override

@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import com.enpit.mykt.Activity.MainActivity;
 import com.enpit.mykt.Activity.ScheduleActivity;
+import com.enpit.mykt.Activity.ScheduleListActivity;
 import com.enpit.mykt.Global.Global;
 import com.enpit.mykt.Global.TimeSheet;
 import com.enpit.mykt.Model.TimeSet;
@@ -127,7 +128,7 @@ public class DayTimeFragment extends Fragment implements AbsListView.OnItemClick
 
             // Notify the active callbacks interface (the activity, if the
             // fragment is attached to one) that an item has been selected.
-            startActivity(new Intent(getActivity(), ScheduleActivity.class));
+            startActivity(new Intent(getActivity(), ScheduleListActivity.class));
         }
     }
 

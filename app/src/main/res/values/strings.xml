@@ -11,4 +11,5 @@
 
     <string name="another_activity">another_activity!</string>
     <string name="title_activity_another">anotherActivity</string>
+    <string name="title_activity_list">LisActivity</string>
 </resources>
